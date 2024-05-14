@@ -22,7 +22,7 @@ const SearchBox = ({ search }) => {
                         value={state}
                         type="text"
                         className="search-box__form-input"
-                        placeholder="Shawshank Redemption yaxud tt0317248 "
+                        placeholder="Kutsal damacana yaxud tt1092011 "
                         onChange={searchLineChangeHandler}
                     />
                 </label>
