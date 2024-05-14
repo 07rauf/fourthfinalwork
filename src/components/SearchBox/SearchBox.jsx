@@ -14,7 +14,7 @@ const SearchBox = ({ search }) => {
     };
 
     return (
-        <div className="search-box">
+        <div className="search-box">  
             <form className="search-box__form" onSubmit={searchBoxSubmitHandler}>
                 <label className="search-box__form-label">
                     Filmi başlığa və ya ID-yə görə axtarın:

@@ -8,6 +8,7 @@ import './MainPage.css';
 const MainPage = () => {
     const [movies, setMovies] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const [title, setTitle] = useState('');
 
     const getId = async (ids) => {
         const movieId = ids.map(id => fetch(`https://www.omdbapi.com/?i=${id}&apikey=aa01eba0`).then(response => response.json()));
@@ -46,7 +47,22 @@ const MainPage = () => {
     const listremoveToFavorites = (imdbID) => {
         setFavorites(favorites.filter(movie => movie.imdbID !== imdbID));
     };
-    
+
+    const saveList = async (listTitle) => {
+        const response = await fetch('https://acb-api.algoritmika.org/api/movies/list', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: listTitle,
+                movies: favorites.map(movie => ({ imdbID: movie.imdbID }))
+            })
+        });
+        const data = await response.json();
+        alert( `localhost:5173/list/${data.id}`);
+    };
+
     return (
         <div className="main-page">
             <Header />
@@ -60,7 +76,7 @@ const MainPage = () => {
                     </div>
                 </section>
                 <aside className="main-page__favorites">
-                    <Favorites movies={favorites} removeFromlist={listremoveToFavorites} />
+                    <Favorites movies={favorites} removeFromlist={listremoveToFavorites} saveList={saveList} setTitle={setTitle} />
                 </aside>
             </main>
         </div>

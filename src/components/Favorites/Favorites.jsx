@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Favorites.css';
 
-const Favorites = ({ movies, removeFromlist}) => {
+const Favorites = ({ movies, removeFromlist, saveList, setName }) => {
+    const [inputName, setinputName] = useState('');
+
+    const putName = (e) => {
+        setinputName(e.target.value);
+        setName(e.target.value);
+    };
+
     return (
         <div className="favorites">
-            <input type="text" className="favorites__name" placeholder="Siyahı adını daxil edin" />
+            <input
+                type="text"
+                className="favorites__name"
+                placeholder="Siyahı adını daxil edin"
+                value={inputName}
+                onChange={putName}
+            />
             <ol className="favorites__list">
-                {movies.map((item) => (
-                    <li key={item.imdbID}>
-                        {item.Title} ({item.Year})
-                        <button className='deletebutton' type='button'  onClick={() => removeFromlist(item.imdbID)}>
-              <span>CONFIRM DELETE</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
+                {movies.map((movie) => (
+                    <li key={movie.imdbID}>
+                        {movie.Title} ({movie.Year})
+                        <button className="deletebutton" type="button" onClick={() => removeFromlist(movie.imdbID)}>
+                            <span>CONFIRM DELETE</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
                     </li>
                 ))}
             </ol>
-            <button type="button" className="favorites__save">Siyahını Yadda Saxla</button>
+            <button className="favorites__save" onClick={() => saveList(inputName)}>Siyahını Yadda Saxla</button>
         </div>
     );
 };
