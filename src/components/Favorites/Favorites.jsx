@@ -31,7 +31,13 @@ const Favorites = ({ movies, removeFromlist, saveList, setName, savedLists }) =>
                     </li>
                 ))}
             </ol>
-            <button className="favorites__save" onClick={() => saveList(inputName)}>Siyahını Yadda Saxla</button>
+            <button
+                className="favorites__save"
+                onClick={() => saveList(inputName)}
+                disabled={!inputName.trim() || movies.length === 0}
+            >
+                Siyahını Yadda Saxla
+            </button>
             {savedLists.length > 0 && (
                 <div className="favorites__saved-lists">
                     <ol className='olclass'>

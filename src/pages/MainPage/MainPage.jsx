@@ -44,7 +44,6 @@ const MainPage = () => {
             setFavorites([...favorites, movie]);
         }
     };
-
     const listremoveToFavorites = (imdbID) => {
         setFavorites(favorites.filter(movie => movie.imdbID !== imdbID));
     };
