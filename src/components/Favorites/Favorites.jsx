@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Favorites.css';
 
-const Favorites = ({ movies, removeFromlist, saveList, setName }) => {
+const Favorites = ({ movies, removeFromlist, saveList, setName, savedLists }) => {
     const [inputName, setinputName] = useState('');
 
     const putName = (e) => {
@@ -32,6 +32,17 @@ const Favorites = ({ movies, removeFromlist, saveList, setName }) => {
                 ))}
             </ol>
             <button className="favorites__save" onClick={() => saveList(inputName)}>Siyahını Yadda Saxla</button>
+            {savedLists.length > 0 && (
+                <div className="favorites__saved-lists">
+                    <ol className='olclass'>
+                        {savedLists.map((list, index) => (
+                            <li key={index}>
+                                <a href={list.link} target="_blank">{list.name}</a>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            )}
         </div>
     );
 };

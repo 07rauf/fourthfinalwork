@@ -26,6 +26,7 @@
     color: #FFEEDB;
     font-size: 14px;
     transition: all 0.2s linear;
+    margin-top: 10px;
 }
 
 .favorites__save:hover {
@@ -83,4 +84,8 @@ span {
   opacity: 1;
   transition: .3s;
 }
-
+.olclass{
+    list-style-type:decimal-leading;
+    margin-left: 16px;
+    color: black
+}

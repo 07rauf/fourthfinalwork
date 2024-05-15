@@ -1,5 +1,9 @@
 .list-page {
+    margin-top: 20px;
+    margin-left: 140px;
     padding: 42px calc(50% - 300px);
+    border: 1px solid black;
+    width: 300px;
 }
 
 .list-page__title {

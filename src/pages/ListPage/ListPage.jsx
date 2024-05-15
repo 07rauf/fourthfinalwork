@@ -10,11 +10,11 @@ const ListPage = () => {
         const fetchList = async () => {
             const response = await fetch(`https://acb-api.algoritmika.org/api/movies/list/${id}`);
             const data = await response.json();
-            const movieDetails = await Promise.all(data.movies.map(movie => 
+            const aboutMovie = await Promise.all(data.movies.map(movie => 
                 fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=aa01eba0`)
                 .then(response => response.json())
             ));
-            setState({ title: data.title, movies: movieDetails });
+            setState({ title: data.title, movies:  aboutMovie});
         };
 
         fetchList();
@@ -29,6 +29,7 @@ const ListPage = () => {
                         <a href={`https://www.imdb.com/title/${item.imdbID}/`} target="_blank" rel="noopener noreferrer">
                             {item.Title} ({item.Year})
                         </a>
+                        
                     </li>
                 ))}
             </ul>

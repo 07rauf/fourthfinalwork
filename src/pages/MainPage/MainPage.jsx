@@ -9,6 +9,7 @@ const MainPage = () => {
     const [movies, setMovies] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [title, setTitle] = useState('');
+    const [savedLists, setSavedLists] = useState([]);
 
     const getId = async (ids) => {
         const movieId = ids.map(id => fetch(`https://www.omdbapi.com/?i=${id}&apikey=aa01eba0`).then(response => response.json()));
@@ -60,7 +61,8 @@ const MainPage = () => {
             })
         });
         const data = await response.json();
-        alert( `localhost:5173/list/${data.id}`);
+        setSavedLists([...savedLists, { name: listTitle, link: `http://localhost:5173/list/${data.id}` }]);
+        setFavorites([]);
     };
 
     return (
@@ -76,7 +78,13 @@ const MainPage = () => {
                     </div>
                 </section>
                 <aside className="main-page__favorites">
-                    <Favorites movies={favorites} removeFromlist={listremoveToFavorites} saveList={saveList} setTitle={setTitle} />
+                    <Favorites 
+                        movies={favorites} 
+                        removeFromlist={listremoveToFavorites} 
+                        saveList={saveList} 
+                        setName={setTitle} 
+                        savedLists={savedLists} 
+                    />
                 </aside>
             </main>
         </div>
